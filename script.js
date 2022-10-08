@@ -6,6 +6,10 @@ const restaurant = {
     categories: ['Italian', 'Pizerria', 'Vegetarian', 'Organic'],
     starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
     mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+    order: function (starterIndex, mainIndex) {
+        return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+    }
 }
 
 // ARRAY DESTRUCTURING
@@ -41,3 +45,15 @@ let [main, , secondary] = restaurant.categories;
 // To switch values of the variables using destructuring
 [main, secondary] = [secondary, main]
 console.log(main, secondary);
+
+// Receive two return values from a function.
+const [starter, mainCourse] = restaurant.order(1, 0);
+console.log(starter, mainCourse);
+
+// Nested Arrays
+const nested = [2, 4, [5, 6]];
+//const [i, , k] = nested;
+//console.log(i, k); // 2, [5, 6]
+
+const [i, , [j, k]] = nested;
+console.log(i,j,k); // 2,5,6
