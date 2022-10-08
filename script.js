@@ -50,10 +50,18 @@ console.log(main, secondary);
 const [starter, mainCourse] = restaurant.order(1, 0);
 console.log(starter, mainCourse);
 
-// Nested Arrays
+// NESTED ARRAYS
 const nested = [2, 4, [5, 6]];
 //const [i, , k] = nested;
 //console.log(i, k); // 2, [5, 6]
 
 const [i, , [j, k]] = nested;
 console.log(i,j,k); // 2,5,6
+
+// DEFAULT VALUES
+// const [p, q, r] = [8, 9]
+// console.log(p, q, r); // 8, 9, undefined.
+
+//The above error can be fixed by setting default values as shown below:
+const [p = 1, q = 1, r = 1] = [8, 9]
+console.log(p, q, r); // 8, 9, 1 
