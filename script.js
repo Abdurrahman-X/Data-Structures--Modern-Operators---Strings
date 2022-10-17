@@ -29,6 +29,10 @@ const restaurant = {
         //console.log(address, mainIndex, starterIndex, time);
         console.log(`Order Received!, ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`);
     },
+
+    orderPasta: function (ingr1, ingr2, ingr3) {
+        console.log(`Here is your delicious pasta with ${ingr1}, ${ingr2}, ${ingr3}`);
+    }
 }
 
 restaurant.orderDelivery({
@@ -42,7 +46,12 @@ console.log(restaurant.order(1,2));
 
 console.log(restaurant.openingHours.thu);
 
-// OBJECT DESTRUCTURING
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+//OBJECT DESTRUCTURING
 // const { name, openingHours, categories } = restaurant; // Object destructuring does not care about the order like in array destructuring.
 // console.log(name, openingHours, categories);
 
@@ -75,10 +84,8 @@ const {
  const { fri: {open, close}} = hours;
  console.log(open, close);
 
+
  
-
-
-
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -118,7 +125,8 @@ let [main, , secondary] = restaurant.categories;
 
 // Receive two return values from a function.
 const [starter, mainCourse] = restaurant.order(1, 0);
-//console.log(starter, mainCourse);
+// console.log(starter, mainCourse);
+
 
 // NESTED ARRAYS
 const nested = [2, 4, [5, 6]];
@@ -135,3 +143,98 @@ const [i, , [j, k]] = nested;
 //The above error can be fixed by setting default values as shown below:
 const [p = 1, q = 1, r = 1] = [8, 9]
 //console.log(p, q, r); // 8, 9, 1 
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
+// SPREAD OPERATOR - expects multiple values separated by a comma. Used to build new arrays, pass multiple values into a function, and in both cases to expand an array into its individual elements.
+const Arr = [7, 8, 9];
+//const newArr = [1, 2, Arr[0], Arr[1], Arr[2]];
+const newArr = [1, 2, ...Arr];
+
+console.log(newArr); // [1, 2, 7, 8, 9]
+console.log(...newArr); // 1, 2, 7, 8, 9
+
+const newMenu = [...restaurant.mainMenu, "Jollof Rice"];
+console.log(newMenu); // ['Pizza', 'Pasta', Risotto', 'Jollof Rice']
+console.log(...newMenu); // Pizza Pasta Risotto Jollof Rice
+
+// USE CASES OF SPREAD OPERATOR
+
+// Create shallow copies of an array
+const mainMenuCopy = [...restaurant.mainMenu];
+
+// Join or merge two or more arrays together
+const allMenu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(allMenu);
+console.log(...allMenu);
+
+// Iterables: are arrays, strings, maps, and sets. NOT Objects.
+const str = 'Jonas';
+const letters = [...str, ' ', 'T'];
+console.log(letters); 
+console.log(...str); // J o n a s
+
+const ingredients = [
+    // prompt("Lets's make pasta! Ingredient 1?"), 
+    // prompt("Ingredient 2?"), 
+    // prompt("Ingredient 3?")
+]
+
+//restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2])
+restaurant.orderPasta(...ingredients);
+
+// OBJECTS
+const newRestaurant = { foundedIn: 2001, ...restaurant, founder: "Abdurrahman-X"};
+console.log(newRestaurant);
+
+// we can also create shallow copies of objects.
+const restaurantCopy = {...restaurant};
+console.log(restaurantCopy);
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////// REST OPERATOR - used to collect multiple elements and condense them into an array. Unlike the spread operator which is used to unpack an array, the rest operator is to pack elements into an array.
+
+// 1) Destructuring.
+
+// SPREAD, because on the right hand side of the "="
+const arrr = [1, 2, ...[3, 4, 5]];
+console.log(arrr);
+
+// REST, because on the left hand side of the "="
+const [A, B, ...others ] = [1, 2, 3, 4, 5];
+console.log(A, B, others);
+
+// In destructuring assignments, the rest operator must always be the last element
+const [pizza, , risotto, ...otherFood] = [...restaurant.mainMenu, restaurant.starterMenu];
+console.log(pizza, risotto, otherFood);
+
+
+// Objects
+const { sat: weekend, ...weekdays} = restaurant.openingHours;
+console.log(weekend, weekdays);
+
+// 2) Functions
+
+function add (...numbers) {
+    let sum = 0;
+    // Using While Loop
+
+    // let i = 0;
+    // while (i < numbers.length) {
+    //     sum = sum + numbers[i];
+    //     i++;
+    // }
+    
+    // For Loop
+
+    for (let i = 0; i < numbers.length; i++) {
+        sum += numbers[i];
+    }
+    console.log(sum);
+}
+
+add(2,3);
+add(2,3,5,6,7);
+add(1,2,5,3,4,8,9,3)
