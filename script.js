@@ -289,3 +289,13 @@ if (restaurant.orderPasta) {
 // By short-circuiting
 restaurant.orderPasta && restaurant.orderPasta('onion', 'garlic', 'spianach');
 
+//---------------------------------------------------------------------------------------------
+
+restaurant.numOfGuests = 0;
+
+const guests = restaurant.numOfGuests || 10;
+console.log(guests); // 10
+
+// nullish - null and undefined (does NOT include '' and 0). The nullish coalescing operator considers 0 and "" and truthy values. Just like the name implies its only worried about null and undefined.
+const guestCorrect = restaurant.numOfGuests ?? 10;
+console.log(guestCorrect); // 0
