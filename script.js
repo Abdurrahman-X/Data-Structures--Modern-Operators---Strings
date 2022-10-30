@@ -32,6 +32,11 @@ const restaurant = {
 
     orderPasta: function (ingr1, ingr2, ingr3) {
         console.log(`Here is your delicious pasta with ${ingr1}, ${ingr2}, ${ingr3}`);
+    },
+
+    orderPizza: function (mainIngredient, ...otherIngredients) {
+        console.log(mainIngredient);
+        console.log(otherIngredients);
     }
 }
 
@@ -148,7 +153,7 @@ const [p = 1, q = 1, r = 1] = [8, 9]
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////
-// SPREAD OPERATOR - expects multiple values separated by a comma. Used to build new arrays, pass multiple values into a function, and in both cases to expand an array into its individual elements.
+// SPREAD OPERATOR - expects multiple values separated by a comma. Used to build new arrays, pass multiple values into a function, and in both cases to expand an array into its individual elements. Used where we would write values, separated by a comma.
 const Arr = [7, 8, 9];
 //const newArr = [1, 2, Arr[0], Arr[1], Arr[2]];
 const newArr = [1, 2, ...Arr];
@@ -194,7 +199,7 @@ const restaurantCopy = {...restaurant};
 console.log(restaurantCopy);
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////// REST OPERATOR - used to collect multiple elements and condense them into an array. Unlike the spread operator which is used to unpack an array, the rest operator is to pack elements into an array.
+//////////////////////////////////////////////////////////////////////////////////////////////////////// REST OPERATOR - used to collect multiple elements and condense them into an array. Unlike the spread operator which is used to unpack an array, the rest operator is to pack elements into an array. Used where we would write variable names, separated by a comma.
 
 // 1) Destructuring.
 
@@ -237,4 +242,50 @@ function add (...numbers) {
 
 add(2,3);
 add(2,3,5,6,7);
-add(1,2,5,3,4,8,9,3)
+add(1,2,5,3,4,8,9,3);
+
+const xArr = [23, 5, 17];
+add(...xArr); // spread operator
+
+restaurant.orderPizza('mushrooms', 'Olive oil', 'onions', 'spinach');
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+// SHORT-CIRCUITING (&& and ||)
+// Logical operators can:
+// 1. use ANY data type
+// 2. return ANY data type
+// 3. short-circuiting
+
+console.log("--- OR ---");
+
+console.log(3 || 'Jonas'); // if the first operand in the OR(||) operation is a "truthy value", the operand is returned without evaluating the second operand. This is known as Short-circuiting.
+console.log('' || 'Jonas'); // Jonas. "" is a "falsy value"
+console.log(true || 0); // true
+console.log(undefined || null); // null. 
+console.log(null || undefined); // undefined.
+// there are 6 falsy values - 0, NaN, "", Undefined, Null, false
+
+console.log(undefined || 0 || "" || 'Hello' || 23 || null); // Hello. This is because Hello is the first truthy value encountered.
+
+restaurant.numOfGuests = 0;
+const guests1 = restaurant.numOfGuests ? restaurant.numOfGuests : 23;
+console.log(guests1); 
+
+// By short-circuiting
+const guests2 = restaurant.numOfGuests || 10;
+console.log(guests2);
+
+console.log("--- AND ---");
+// This is the exact opposite of the OR operation.
+console.log(0 && 'Jonas'); // 0. The AND operator short-circuits if the first operand is a falsy value without evaluating the second operand.
+console.log('' && 'Jonas'); // ""
+console.log(7 && 0); // 0.
+console.log('Hello' && 23 && null && 'desire'); // null.
+
+//Practical Example
+if (restaurant.orderPasta) {
+    restaurant.orderPasta('onion', 'garlic', 'spianach');
+}
+// By short-circuiting
+restaurant.orderPasta && restaurant.orderPasta('onion', 'garlic', 'spianach');
+
