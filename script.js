@@ -299,3 +299,37 @@ console.log(guests); // 10
 // nullish - null and undefined (does NOT include '' and 0). The nullish coalescing operator considers 0 and "" and truthy values. Just like the name implies its only worried about null and undefined.
 const guestCorrect = restaurant.numOfGuests ?? 10;
 console.log(guestCorrect); // 0
+
+//--------- LOGICAL ASSIGNMENT OPERATORS ------------------------------------------------
+const rest1 = {
+    name: 'Capri',
+    // numGuests: 20
+    numGuests: 0
+}
+
+const rest2 = {
+    name: 'La Veranda',
+    owner: 'Gianluigi Carrera'
+}
+
+// By OR Logical Assignment Operator
+
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+// rest1.numGuests ||= 10;
+// rest2.numGuests ||= 10;
+
+// NULLISH LOGICAL ASSIGNMENT OPERATOR
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
+
+// AND Logical assignment operator
+
+// rest1.owner = rest1.owner  && 'Sicuro Vallone';
+// rest2.owner = rest2.owner  && 'Sicuro Vallone';
+rest1.owner &&= 'Sicuro Vallone';
+rest2.owner &&= 'Sicuro Vallone';
+
+
+console.log(rest1); //owner: undefined, numGuests: 0
+console.log(rest2); //owner: Sicuro Vallone, numGuests: 0
