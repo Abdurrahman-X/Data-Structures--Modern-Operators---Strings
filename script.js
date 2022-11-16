@@ -1,4 +1,19 @@
 'use strict';
+// Enhanced Object Literal
+const openingHours = {
+    thu: {
+        open: 12,
+        close: 22,
+    },
+    fri: {
+        open: 11,
+        close: 23,
+    },
+    sat: {
+        open: 0, // open 24 hours
+        close: 24,
+    }
+};
 
 const restaurant = {
     name: "Classico Italiano",
@@ -6,22 +21,8 @@ const restaurant = {
     categories: ['Italian', 'Pizerria', 'Vegetarian', 'Organic'],
     starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
     mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-    openingHours:{
-        thu: {
-            open: 12,
-            close: 22,
-        },
-        fri: {
-            open: 11,
-            close: 23,
-        },
-        sat: {
-            open: 0, // open 24 hours
-            close: 24,
-        },
-    },
-
-    order: function (starterIndex, mainIndex) {
+    openingHours,
+    order: function (starterIndex = 0, mainIndex = 1) {
         return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
     },
 
@@ -29,12 +30,12 @@ const restaurant = {
         //console.log(address, mainIndex, starterIndex, time);
         console.log(`Order Received!, ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`);
     },
-
-    orderPasta: function (ingr1, ingr2, ingr3) {
+    // Enhanced Object Literal
+    orderPasta(ingr1, ingr2, ingr3) {
         console.log(`Here is your delicious pasta with ${ingr1}, ${ingr2}, ${ingr3}`);
     },
-
-    orderPizza: function (mainIngredient, ...otherIngredients) {
+    // Enhanced Object Literal
+    orderPizza(mainIngredient, ...otherIngredients) {
         console.log(mainIngredient);
         console.log(otherIngredients);
     }
@@ -47,9 +48,97 @@ restaurant.orderDelivery({
     mainIndex: 2,
 });
 
-console.log(restaurant.order(1,2));
+//console.log(restaurant.order(3,0));
 
-console.log(restaurant.openingHours.thu);
+//console.log(restaurant.openingHours.thu);
+
+// -------------------------------- SETS -----------------------------------------------
+// A set is a collection of unique values. No duplicates. Sets can hold mixed data types as well.
+const ordersSet = new Set([
+    'Pasta',
+    'Pizza',
+    'Pizza',
+    'Risotto',
+    'Pasta',
+    'Pizza',
+]);
+console.log(ordersSet); // [Pasta, Pizza, Risotto]
+
+// ------------------------------ LOOPING OBJECTS ----------------------------------------------
+// Property NAMES
+const properties = Object.keys(openingHours);
+//console.log(properties); [thu, fri, sat]
+
+let openStr = `We are open on ${properties.length} days: `
+
+for (const prop of properties) {
+    openStr += `${prop}, `;
+    
+}
+console.log(openStr);
+
+// Property VALUES
+const values = Object.values(openingHours);
+console.log(values);
+
+// Entire OBJECT
+const entries = Object.entries(openingHours);
+console.log(entries);
+
+for (const [day, { open, close }] of entries) {
+    console.log(`On ${day}, we open at ${open}, and close at ${close}.`);
+}
+// ---------------------------------- OPTIONAL CHAINING-------------------------------------------
+// With optional chaining, if a certain property does not exist, then undefined is returned immediately.
+
+//console.log(restaurant.openingHours.mon.close); // cannot read property of close, because "mon" is undefined.
+/*
+if (restaurant.openingHours && restaurant.openingHours.mon) {
+    console.log(restaurant.openingHours.mon.close);
+}
+
+// WITH OPTIONAL CHAINING
+//console.log(restaurant.openingHours?.mon?.close) // undefined.
+
+// Example
+const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
+
+for (const day of days) {
+    //console.log(day);
+    const open = restaurant.openingHours[day]?.open ?? 'closed';
+    console.log(`On ${day}, we open at ${open}`);
+}
+
+// OPTIONAL CHAINING ON METHODS
+const myOrder = restaurant.order?.(0, 1) ?? 'Method does not exist';
+console.log(myOrder);
+console.log(restaurant.orderFocaccia?.(0, 1) ?? 'Method does not exist');
+
+// OPTIONAL CHAINING ON ARRAYS
+
+const users = [
+    {
+        name: 'Abdurrahman',
+        email: 'abolajiabdurrahman@gmail.com'
+    }
+]
+
+console.log(users[0] ?.name || 'User does not exist');  // Abdurrahman
+*/
+
+/*
+//----------------------------------- FOR - OF LOOP ----------------------------------------------
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+//for (const item of menu) console.log(item);
+// However, in order to get the index of all the items, we use the entries() method
+for (const [index, meal] of menu.entries()) {
+    
+    //const [index, meal] = item;
+    console.log(`${index + 1}: ${meal}`);
+    //console.log(`${item[0] + 1}: ${item[1]}`);
+}
+// console.log([...menu.entries()]);
 
 
 
@@ -71,8 +160,8 @@ const {
  
  // Setting Default Values -  Especialyy when we do not have data hardcoded as above.
 
- const { menu = [], starterMenu: starters = []} = restaurant;
- console.log(menu, starters);
+ //const { menu = [], starterMenu: starters = []} = restaurant;
+ //console.log(menu, starters);
 
  // MUTATING VARIABLES
  let a = 111;
@@ -89,9 +178,7 @@ const {
  const { fri: {open, close}} = hours;
  console.log(open, close);
 
-
- 
-
+*/
 
 ////////////////////////////////////////////////////////////////////////////////
 // ARRAY DESTRUCTURING
@@ -100,6 +187,7 @@ const {
 Destructuring is to break down a complex into a smaller data structure like a variable. For arrays, we use destructuring to retrieve elements from the array and store them to variables in a very easy way.
 */
 
+/*
 const arr = [3, 4, 5]
 // const a = arr[0]
 // const b = arr[1]
@@ -114,6 +202,7 @@ let [main, , secondary] = restaurant.categories;
 //console.log(main, secondary);
 
 // SWITCHING VARIABLES
+*/
 
 /*
     const temp = main;
@@ -124,6 +213,7 @@ let [main, , secondary] = restaurant.categories;
     console.log(main, secondary); // Vegetarian, Italian
 */
 
+/*
 // To switch values of the variables using destructuring
 [main, secondary] = [secondary, main]
 //console.log(main, secondary);
@@ -149,11 +239,12 @@ const [i, , [j, k]] = nested;
 const [p = 1, q = 1, r = 1] = [8, 9]
 //console.log(p, q, r); // 8, 9, 1 
 
-
+*/
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 // SPREAD OPERATOR - expects multiple values separated by a comma. Used to build new arrays, pass multiple values into a function, and in both cases to expand an array into its individual elements. Used where we would write values, separated by a comma.
+/*
 const Arr = [7, 8, 9];
 //const newArr = [1, 2, Arr[0], Arr[1], Arr[2]];
 const newArr = [1, 2, ...Arr];
@@ -333,3 +424,4 @@ rest2.owner &&= 'Sicuro Vallone';
 
 console.log(rest1); //owner: undefined, numGuests: 0
 console.log(rest2); //owner: Sicuro Vallone, numGuests: 0
+*/
