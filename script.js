@@ -53,7 +53,11 @@ restaurant.orderDelivery({
 //console.log(restaurant.openingHours.thu);
 
 // -------------------------------- SETS -----------------------------------------------
-// A set is a collection of unique values. No duplicates. Sets can hold mixed data types as well.
+/*
+A set is a collection of unique values. No duplicates. Sets can hold mixed data types as well. Sets are iterables just like arrays and can be looped over, and strings. A set is however, different from an array because:
+
+ 1. It's elements are unique
+ 2. The order of elements in the set is irrelevant
 const ordersSet = new Set([
     'Pasta',
     'Pizza',
@@ -63,9 +67,31 @@ const ordersSet = new Set([
     'Pizza',
 ]);
 console.log(ordersSet); // [Pasta, Pizza, Risotto]
+console.log(new Set('Jonas')); // J, o, n, a, s
+
+// Working with Sets
+console.log(ordersSet.size); // 3
+console.log(ordersSet.has('Bread')); // false
+console.log(ordersSet.has('Pizza')); // true
+ordersSet.add('Garlic Bread'); // [Pasta, Pizza, Risotto, Garlic Bread]
+ordersSet.add('Garlic Bread'); // [Pasta, Pizza, Risotto, Garlic Bread]
+ordersSet.delete('Pasta'); // [Pizza, Risotto, Garlic Bread]
+//ordersSet.clear(); // clears the whole set
+
+for (const order of ordersSet) {
+    console.log(order);
+}
+
+// Example
+const staff = ["Waiter", "Chef", "Waiter", "Manager", "Waiter", "Chef" ];
+const staffUnique = [...new Set(staff)]; // unpack set into an array
+console.log(staffUnique, staffUnique.length);
+
+// It's impossible to retrieve data from sets.
 
 // ------------------------------ LOOPING OBJECTS ----------------------------------------------
 // Property NAMES
+/*
 const properties = Object.keys(openingHours);
 //console.log(properties); [thu, fri, sat]
 
@@ -88,6 +114,9 @@ console.log(entries);
 for (const [day, { open, close }] of entries) {
     console.log(`On ${day}, we open at ${open}, and close at ${close}.`);
 }
+*/
+
+
 // ---------------------------------- OPTIONAL CHAINING-------------------------------------------
 // With optional chaining, if a certain property does not exist, then undefined is returned immediately.
 
