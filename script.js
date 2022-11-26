@@ -52,6 +52,93 @@ restaurant.orderDelivery({
 
 //console.log(restaurant.openingHours.thu);
 
+// -------------------------------- MAPS ITERATION -------------------------------------------------
+const question = new Map([
+    ['question', 'What is the best programming language in the World?'],
+    [1, 'C'],
+    [2, 'Java'],
+    [3, 'Javascript'],
+    [4, 'C#'],
+    ['correct', 3],
+    [true, 'Correct 🥳'],
+    [false, 'Try again! 😥']
+]);
+
+// We can convert Objects into Maps as follows:
+const hourMaps = new Map(Object.entries(openingHours));
+console.log(hourMaps);
+
+console.log(hourMaps.get('fri'));
+//console.log(question);
+
+// QUIZ APP
+console.log(question.get('question'));
+for (const [key, value] of question) {
+    if (typeof key === 'number') {
+        console.log(`Answer ${key}: ${value}`);
+    }
+}
+
+// const answer = Number(prompt('Your answer?'));
+const answer = 3;
+console.log(answer);
+
+// Ternary Solution
+// question.get('correct') === answer ? console.log(question.get(true)) : console.log(question.get(false));
+
+console.log(question.get(question.get('correct') === answer));
+
+// Convert Maps to Arrays
+console.log([...question]);
+// console.log(question.entries());
+console.log([...question.keys()]);
+console.log([...question.values()]);
+
+
+// -------------------------------- MAPS FUNDAMENTALS-----------------------------------------------
+// A data structure that we can use to map values to keys just like Objects. A huge difference between objects and maps is:
+//1. The keys in maps can be of any type.
+
+/*
+const newRestaurant = new Map();
+newRestaurant.set('name', 'La Viola');
+newRestaurant.set(1, 'Nairobi, Kenya');
+newRestaurant.set(2, 'Lagos, Nigeria'); // This 'set' updates and returns the updated map. Hence we can chain multiple set methods and get the updated map everytime.
+
+newRestaurant
+    .set('categories', ['Italian', 'Pizerria', 'Vegetarian', 'Organic'])
+    .set('open', 11)
+    .set('close', 23)
+    .set(true, 'We are open :D')
+    .set(false, 'We are closed :(')
+
+// To read data from a map, we use the GET method, and pass in the name of the key
+
+// console.log(newRestaurant.get('categories'));
+// console.log(newRestaurant.get(2));
+// console.log(newRestaurant.get(false));
+
+// console.log(newRestaurant);
+console.log(document.querySelector('h1'));
+
+const time = 21;
+console.log(newRestaurant.get(time > newRestaurant.get('open') && time < newRestaurant.get('close')));
+
+// To check if a map contains a certain key
+// console.log(newRestaurant.has('name'));
+// newRestaurant.delete(2)
+//console.log(newRestaurant.size);
+// console.log(newRestaurant);
+// newRestaurant.clear();
+
+// We can also use arrays and Objects as map keys:
+const arr = [1, 2];
+newRestaurant.set(arr, 'Test');
+newRestaurant.set(document.querySelector('h1'), 'Heading')
+console.log(newRestaurant);
+*/
+
+
 // -------------------------------- SETS -----------------------------------------------
 /*
 A set is a collection of unique values. No duplicates. Sets can hold mixed data types as well. Sets are iterables just like arrays and can be looped over, and strings. A set is however, different from an array because:
@@ -88,6 +175,8 @@ const staffUnique = [...new Set(staff)]; // unpack set into an array
 console.log(staffUnique, staffUnique.length);
 
 // It's impossible to retrieve data from sets.
+
+
 
 // ------------------------------ LOOPING OBJECTS ----------------------------------------------
 // Property NAMES
