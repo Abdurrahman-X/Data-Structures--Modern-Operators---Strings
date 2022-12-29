@@ -1,4 +1,163 @@
 'use strict';
+
+// ------------------------------- WORKING WITH STRINGS -------------------------------------------
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
+
+// ----------- PART 1----------------------
+/*
+console.log(airline[2]); // P
+console.log(plane.length); // 4
+console.log('83B1'[1]); // 3
+
+console.log(airline.indexOf('g')); // 13 - takes the first instance of occurrence
+console.log(airline.indexOf('P')); // 2
+console.log(airline.lastIndexOf('P')); // last index of P
+// We can also search for entire words. NB - Strings are Case-sensitive
+console.log(airline.indexOf('Air')); // 4
+console.log(airline.indexOf('air')); // -1 i.e cannot be found.
+
+// Extract part of a string using the slice method. The slice method takes two arguments (can also take ust an argument). The beginning and end index.
+
+console.log(airline.slice(4)); // Air Portugal (known as a substring). Extraction starts from index 4.
+console.log(airline.slice(4, 7)); // Air. The end vale is NOT included in the string. The length of the extracted string (substring) will always be equal to the end - beginning parameters.
+
+// To extract the first and last words from airline without hardcoding the index.
+console.log(airline.slice(0, airline.indexOf(' '))); // TAP
+console.log(airline.slice(airline.lastIndexOf(' ') + 1)); // Portugal 
+
+console.log(airline.slice(-2)); // al. Starts extracting from the end.
+console.log(airline.slice(1, -1)); // AP Air Portuga. 
+
+const checkMiddleSeat = function (seat) {
+    // middle seat is either B or E
+    const s = seat.slice(-1);
+    s === 'B' || s === 'E' ? console.log('Middle seat 😎') : console.log('Try again 😒');;
+}
+
+checkMiddleSeat('21B');
+checkMiddleSeat('21C');
+checkMiddleSeat('21E');
+*/
+
+// -------------------- PART 2 -------------------------------
+console.log(airline.toUpperCase()); // TAP AIR PORTUGAL
+console.log(airline.toLowerCase()); // tap air portugal
+
+// Fix capitalization in name
+/*
+const passenger = 'jOnAtHaN'; // Jonathan
+const passengerLower = passenger.toLowerCase(); // jonathan
+
+const passengerCorrect = passengerLower[0].toUpperCase() + passengerLower.slice(1);
+console.log(passengerCorrect); // Jonathan
+*/
+
+const capitalizeName = function (name) {
+    const passengerLower = name.toLowerCase();
+    const passengerCorrect = passengerLower[0].toUpperCase() + passengerLower.slice(1);
+    console.log(passengerCorrect);
+}
+
+capitalizeName('aBDUrraHman');
+capitalizeName('abolaji');
+
+// Comparing emails
+/*
+const email = 'hello@abolaji.io';
+const userEmail = '   Hello@Abolaji.io \n';
+
+const correctMail = userEmail.toLowerCase().trim();
+console.log(correctMail === email);
+*/
+
+const correctMail = function (userEmail) {
+    const LoginMail = 'hello@abolaji.io'
+    const correctMail = userEmail.toLowerCase().trim();
+    console.log(correctMail === LoginMail);
+}
+
+correctMail('   Hello@Abolaji.io \n');
+
+
+// Replacing parts of strings
+const priceNG = '₦350.20';
+const priceUS = priceNG.replace('₦','£').replace('.', ',');
+console.log(priceNG); 
+console.log(priceUS); 
+
+const announcement = 'All passengers come to boarding door 23. Boarding door 23!'
+console.log(announcement.replace('door', 'gate')); // Only replaces the first occurence.
+console.log(announcement.replaceAll('door', 'gate')); // replaces all occurences.
+
+// Booleans
+const newPlane = 'A320neo';
+console.log(newPlane.includes('A320')); // true
+console.log(newPlane.startsWith('A3')); // true
+console.log(newPlane.endsWith('A320')); // false
+console.log(newPlane.endsWith('neo')); // true
+
+// Practice Exercise
+const checkBaggage = function (items) {
+    const baggage = items.toLowerCase();
+
+    if (baggage.includes('knife') || baggage.includes('gun')) {
+        console.log('You are NOT ALLOWED on board');
+    } else {
+        console.log('Welcome aboard!');
+    }
+}
+
+checkBaggage('I have a Laptop, some Food, and a Pocket Knife');
+checkBaggage('Socks and camera');
+checkBaggage('Got some snacks and a gun for protection');
+
+// -------------------------------- PART 3 -------------------------------------------------
+// Split and Join
+
+console.log("a+very+nice+string".split('+')); // ['a', 'very', 'nice', 'string']
+console.log('Abolaji Abdulrahman'.split(' ')); // Abolaji Abdulrahman
+
+const [firstName, lastName] = 'Abolaji Abdulrahman'.split(' ');
+//console.log(firstName, lastName);
+
+const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+console.log(newName);
+
+
+const capitalizePass = function (name) {
+    const passLower = name.toLowerCase().split(' ');
+    const namesUpper = [];
+
+    for (const names of passLower) {
+        // namesUpper.push(names[0].toUpperCase() + names.slice(1))
+        namesUpper.push(names.replace(names[0], names[0].toUpperCase()))
+    }
+    console.log(namesUpper.join(' '));   
+}
+capitalizePass('jessIca anN smitH');
+capitalizePass('abDUrraHman aboLaji');
+
+// String Padding
+const message = 'Go to gate 23!';
+console.log(message.padStart(25, '+').padEnd(30, '+'));
+
+// masking credit card
+const maskCreditCard = function (number) {
+    // convert the number to a string
+    const numStr = String(number);
+    // take the last 4 digits
+    const last4 = numStr.slice(-4);
+    console.log(last4.padStart(numStr.length, '*'));
+}
+
+maskCreditCard(4183893723714893);
+
+// Repeat
+const message2 = 'Bad Weather......... All Departures Delayed ';
+console.log(message2.repeat(5));
+
+
 // Enhanced Object Literal
 const openingHours = {
     thu: {
@@ -53,6 +212,7 @@ restaurant.orderDelivery({
 //console.log(restaurant.openingHours.thu);
 
 // -------------------------------- MAPS ITERATION -------------------------------------------------
+/*
 const question = new Map([
     ['question', 'What is the best programming language in the World?'],
     [1, 'C'],
@@ -93,7 +253,7 @@ console.log([...question]);
 // console.log(question.entries());
 console.log([...question.keys()]);
 console.log([...question.values()]);
-
+*/
 
 // -------------------------------- MAPS FUNDAMENTALS-----------------------------------------------
 // A data structure that we can use to map values to keys just like Objects. A huge difference between objects and maps is:
