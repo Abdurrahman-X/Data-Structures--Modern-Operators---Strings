@@ -17,10 +17,10 @@ console.log(airline.lastIndexOf('P')); // last index of P
 console.log(airline.indexOf('Air')); // 4
 console.log(airline.indexOf('air')); // -1 i.e cannot be found.
 
-// Extract part of a string using the slice method. The slice method takes two arguments (can also take ust an argument). The beginning and end index.
+// Extract part of a string using the slice method. The slice method takes two arguments (can also take just an argument). The beginning and end index.
 
 console.log(airline.slice(4)); // Air Portugal (known as a substring). Extraction starts from index 4.
-console.log(airline.slice(4, 7)); // Air. The end vale is NOT included in the string. The length of the extracted string (substring) will always be equal to the end - beginning parameters.
+console.log(airline.slice(4, 7)); // Air. The end value is NOT included in the string. The length of the extracted string (substring) will always be equal to the end - beginning parameters.
 
 // To extract the first and last words from airline without hardcoding the index.
 console.log(airline.slice(0, airline.indexOf(' '))); // TAP
@@ -41,6 +41,7 @@ checkMiddleSeat('21E');
 */
 
 // -------------------- PART 2 -------------------------------
+/*
 console.log(airline.toUpperCase()); // TAP AIR PORTUGAL
 console.log(airline.toLowerCase()); // tap air portugal
 
@@ -53,6 +54,7 @@ const passengerCorrect = passengerLower[0].toUpperCase() + passengerLower.slice(
 console.log(passengerCorrect); // Jonathan
 */
 
+/*
 const capitalizeName = function (name) {
     const passengerLower = name.toLowerCase();
     const passengerCorrect = passengerLower[0].toUpperCase() + passengerLower.slice(1);
@@ -71,6 +73,7 @@ const correctMail = userEmail.toLowerCase().trim();
 console.log(correctMail === email);
 */
 
+/*
 const correctMail = function (userEmail) {
     const LoginMail = 'hello@abolaji.io'
     const correctMail = userEmail.toLowerCase().trim();
@@ -111,10 +114,13 @@ const checkBaggage = function (items) {
 checkBaggage('I have a Laptop, some Food, and a Pocket Knife');
 checkBaggage('Socks and camera');
 checkBaggage('Got some snacks and a gun for protection');
+*/
+
 
 // -------------------------------- PART 3 -------------------------------------------------
 // Split and Join
 
+/*
 console.log("a+very+nice+string".split('+')); // ['a', 'very', 'nice', 'string']
 console.log('Abolaji Abdulrahman'.split(' ')); // Abolaji Abdulrahman
 
@@ -156,6 +162,8 @@ maskCreditCard(4183893723714893);
 // Repeat
 const message2 = 'Bad Weather......... All Departures Delayed ';
 console.log(message2.repeat(5));
+*/
+
 
 
 // Enhanced Object Literal
