@@ -69,3 +69,32 @@ console.log(flight, me);
 /*
     First-class functions is a concept to show that functions are simply values, and they can be stored in variables or properties. Higher-order functions are functions that receive another function as an argument, or return a new function, or even both.
 */
+
+const oneWord = function (str) {
+    return str.replace(/\s/g, '').toLowerCase()
+}
+
+const upperFirstWord = function (str) {
+    const [first, ...others] =  str.toLowerCase().split(' ')
+    return [first.toUpperCase(), ...others].join(' ')
+}
+
+// Higher-Order Function
+const transformer = function (str, fn) {
+    console.log(`Original String: ${str}`);
+    console.log(`Transformed string: ${fn(str)}`);
+
+    console.log(`Transformed by: ${fn.name}`);
+}
+
+transformer('JavaScript is the Best Language', upperFirstWord);
+
+transformer('JavaScript is the Best Language', oneWord);
+
+// transformer is an Higher-order function. upperFirstWord and oneWord are both callback functions. We do not call them ourselves, rather we tell javascript to call them later.
+
+const highFive = function () {
+    console.log('👋');
+}
+
+document.body.addEventListener('click', highFive)
