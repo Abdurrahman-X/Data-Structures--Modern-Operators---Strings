@@ -70,6 +70,7 @@ console.log(flight, me);
     First-class functions is a concept to show that functions are simply values, and they can be stored in variables or properties. Higher-order functions are functions that receive another function as an argument, or return a new function, or even both.
 */
 
+/*
 const oneWord = function (str) {
     return str.replace(/\s/g, '').toLowerCase()
 }
@@ -117,3 +118,58 @@ const greetArrow = greeting => name => console.log(`${greeting} ${name}`);
 // Alternatively
 greetArrow('Hello')('Abdurrahman');
 
+*/
+
+// ------------------------ CALL & APPLY METHODS ----------------------------------
+const lufthansa = {
+    airline: 'Lufthansa',
+    iataCode: 'LH',
+    bookings: [],
+    //book: function () {}
+    book(flightNum, name){
+        console.log(`${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`);
+        this.bookings.push({
+            flight: `${this.iataCode}${flightNum}`,
+            name
+        })
+    }
+}
+
+const eurowings = {
+    airline: 'Eurowings',
+    iataCode: 'EW',
+    bookings: [],
+}
+
+lufthansa.book(231, 'Abdurrahman Abolaji');
+lufthansa.book(610, 'Arifdeen Balogun');
+console.log(lufthansa);
+
+const book = lufthansa.book;
+// Using the CALL METHOD. The this keyword now manually points to Euroswings using the call method.
+book.call(eurowings, 398, 'AbdulMalik Adebayo')
+book.call(lufthansa, 474, 'Sodiq Idowu')
+
+console.log(eurowings);
+console.log(lufthansa);
+
+const swiss = {
+    airline: 'Swiss Air Lines',
+    iataCode: 'LX',
+    bookings: []
+}
+
+// The this keyword now points to the swiss object
+book.call(swiss, 106, 'Ahmed Shitta');
+console.log(swiss);
+
+// APPLY METHOD
+// Almost the same as the CALL method, except that it doesn't accept receive a list of arguments after the 'this' keyword. Rather it takes an array of arguments. It is rarely used in Modern JS now.
+
+const flightData = [210, 'Rahmah Arogundade']
+book.apply(eurowings, flightData);
+console.log(eurowings);
+
+// Alternatively
+book.call(swiss, ...flightData);
+console.log(swiss);
