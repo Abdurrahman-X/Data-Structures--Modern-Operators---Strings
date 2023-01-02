@@ -91,10 +91,29 @@ transformer('JavaScript is the Best Language', upperFirstWord);
 
 transformer('JavaScript is the Best Language', oneWord);
 
-// transformer is an Higher-order function. upperFirstWord and oneWord are both callback functions. We do not call them ourselves, rather we tell javascript to call them later.
+// transformer is an Higher-order function. upperFirstWord and oneWord are both callback functions. We do not call them ourselves, rather we tell javascript to call them later. Higher order functions help us create a level of abstraction.
 
 const highFive = function () {
     console.log('👋');
 }
 
-document.body.addEventListener('click', highFive)
+document.body.addEventListener('click', highFive);
+
+// Functions Returning Functions
+
+const greet = function (greeting) {
+    return function (name) {
+        console.log(`${greeting} ${name}`);
+    }
+}
+
+const heyGreeter = greet('Hey!');
+heyGreeter('John');
+heyGreeter('Amaka');
+
+// Using Arrow Functions
+const greetArrow = greeting => name => console.log(`${greeting} ${name}`);
+
+// Alternatively
+greetArrow('Hello')('Abdurrahman');
+
