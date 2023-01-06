@@ -47,6 +47,7 @@ const poll = {
     // This generates [0, 0, 0, 0]. More in the next section!
     answers: new Array(4).fill(0),
     registerNewAnswer() {
+        // Get userAnswer
         const userAnswer = Number(prompt(`${this.question}
         ${this.options[0]}
         ${this.options[1]}
@@ -55,16 +56,25 @@ const poll = {
         (Write option number)
         `));
 
-        userAnswer <= 3 && this.answers[userAnswer]++;
-        console.log(poll);
+        // const userAnswer = prompt(`${this.question}\n${this.options.join('\n')}\n(Write option number)`)
+        
+        // Register answer in answers array
+
+        typeof userAnswer === 'number' &&  userAnswer < this.answers.length && this.answers[userAnswer]++;
+        
+        console.log(this.answers);
+        //this.displayResults('string');
+    },
+    displayResults(type = 'array') {
+        
+        type === 'array' && console.log(this.answers);
+        // type === 'string' && console.log(`Poll results are ${this.answers[0]}, ${this.answers[1]}, ${this.answers[2]}, ${this.answers[3]}`);
+        type === 'string' && console.log(`Poll results are ${this.answers.join(', ')}`); 
     }
+
 };
 
-document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer);
+document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer.bind(poll));
 
-
-// poll.registerNewAnswer = function name() {
-//     prompt('What is your favourite programming language? \n 0: Javascript \n 1: python');
-// }
-
-// poll.registerNewAnswer();
+// poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
+// poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');

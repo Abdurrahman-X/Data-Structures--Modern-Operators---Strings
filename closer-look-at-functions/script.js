@@ -202,25 +202,16 @@ lufthansa.buyPlane = function () {
 
 document
     .querySelector('.buy')
-    .addEventListener('click', lufthansa.buyPlane.call(lufthansa));
+    .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
 
 // Partial Application
 
-// const addTax = (rate, value) => value + value * rate;
+const addTax = (rate, value) => value + value * rate;
 
-// // Since we do not have a "this" keyword to attach it to, we use null
-// const addVAT = addTax.bind(null, 0.23);
-// // addVAT = value => value + value * 0.23;
+// Since we do not have a "this" keyword to attach it to, we use null
+const addVAT = addTax.bind(null, 0.23);
+// addVAT = value => value + value * 0.23;
 
-// console.log(addVAT(100));
+console.log(addVAT(100));
 
 
-const addTax = function (rate, value) {
-    const tax = value + value * rate;
-
-    return function (tax) {
-        
-    }
-}
-
-console.log(addTax(0.1, 100))
