@@ -135,6 +135,7 @@ const lufthansa = {
     }
 }
 
+
 const eurowings = {
     airline: 'Eurowings',
     iataCode: 'EW',
@@ -173,3 +174,53 @@ console.log(eurowings);
 // Alternatively
 book.call(swiss, ...flightData);
 console.log(swiss);
+
+
+// ----------------------- THE BIND METHOD ----------------------------------
+// book.call(eurowings, 398, 'AbdulMalik Adebayo')
+
+// The bind method below does not call the book function, rather it returns a new function where the "this" keyword will always be set to euroswings, lufthansa, and swiss. 
+const bookEW = book.bind(eurowings);
+const bookLH = book.bind(lufthansa);
+const bookLX = book.bind(swiss);
+
+bookEW(772, 'Raheemah Adigun');
+
+// specifying parts of the arguments before hand - known as PARTIAL APPLICATION
+const bookLX29 = book.bind(swiss, 29)
+bookLX29('Mukhtar Adigun');
+
+// Bind with Event Listeners
+lufthansa.planes = 400;
+lufthansa.buyPlane = function () {
+    console.log(this); // DOM element attached to eventListener
+
+    this.planes++;
+    console.log(this.planes);
+}
+
+
+document
+    .querySelector('.buy')
+    .addEventListener('click', lufthansa.buyPlane.call(lufthansa));
+
+// Partial Application
+
+// const addTax = (rate, value) => value + value * rate;
+
+// // Since we do not have a "this" keyword to attach it to, we use null
+// const addVAT = addTax.bind(null, 0.23);
+// // addVAT = value => value + value * 0.23;
+
+// console.log(addVAT(100));
+
+
+const addTax = function (rate, value) {
+    const tax = value + value * rate;
+
+    return function (tax) {
+        
+    }
+}
+
+console.log(addTax(0.1, 100))
