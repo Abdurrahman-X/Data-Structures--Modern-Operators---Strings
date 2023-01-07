@@ -228,3 +228,29 @@ runOnce();
 
 (() => console.log('This will ALSO never run again'))();
 
+
+// ---------------------------- CLOSURES --------------------------------------
+// Closures occur automatically. After the execution of a function, it is popped off the call stack, and all the variables existing in the function are all gone. However, closure makes a function remember all the variables that existed at the function's birthplace essentially.
+// Any Function always has access to the variable environment of the execution context in which the function was created. Thanks to closures, a function does not lose connection to the variables that existed at the function's birthplace. Closure has priority over the scope chain.
+
+// � A closure is the closed-over variable environment of the execution context in which a function was created, even after that execution context is gone;
+// � A closure gives a function access to all the variables of its parent function, even after that parent function has returned. The function keeps a reference to its outer scope, which preserves the scope chain throughout time.
+// � A closure makes sure that a function doesn’t loose connection to variables that existed at the function’s birth place;
+// � A closure is like a backpack that a function carries around wherever it goes. This backpack has all the variables that were present in the environment where the function was created.
+
+const secureBooking = function () {
+    let passengerCount = 0;
+
+    return function () {
+        passengerCount++;
+        console.log(`${passengerCount} passenger`);
+    }
+}
+
+const booker = secureBooking();
+
+booker(); // 1 passenger
+booker(); // 2 passenger
+booker(); // 3 passenger
+
+console.dir(booker);
