@@ -63,7 +63,8 @@ const poll = {
         typeof userAnswer === 'number' &&  userAnswer < this.answers.length && this.answers[userAnswer]++;
         
         console.log(this.answers);
-        //this.displayResults('string');
+        this.displayResults();
+        this.displayResults('string');
     },
     displayResults(type = 'array') {
         
