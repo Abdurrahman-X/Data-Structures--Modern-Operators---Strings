@@ -238,19 +238,63 @@ runOnce();
 // � A closure makes sure that a function doesn’t loose connection to variables that existed at the function’s birth place;
 // � A closure is like a backpack that a function carries around wherever it goes. This backpack has all the variables that were present in the environment where the function was created.
 
-const secureBooking = function () {
-    let passengerCount = 0;
+// Example 1
+// const secureBooking = function () {
+//     let passengerCount = 0;
 
-    return function () {
-        passengerCount++;
-        console.log(`${passengerCount} passenger`);
+//     return function () {
+//         passengerCount++;
+//         console.log(`${passengerCount} passenger`);
+//     }
+// }
+
+// const booker = secureBooking();
+
+// booker(); // 1 passenger
+// booker(); // 2 passenger
+// booker(); // 3 passenger
+
+// console.dir(booker);
+
+// Example 2
+let f;
+
+const g = function () {
+    const a = 23;
+    f = function () {
+        console.log(a * 2);
     }
 }
 
-const booker = secureBooking();
+const h = function () {
+    const b = 77;
+    f = function () {
+        console.log(b * 2);
+    }
+}
 
-booker(); // 1 passenger
-booker(); // 2 passenger
-booker(); // 3 passenger
+g();
+f();
 
-console.dir(booker);
+// Re-assigning f function
+h();
+f();
+
+//console.dir(f);
+
+// Example 3
+const boardPassengers = function (no, waitTime) {
+    const perGroup = no / 3;
+
+    setTimeout(() => {
+        console.log(`We are now boarding all ${no} passengers`);
+        console.log(`There are 3 groups, each with ${perGroup} passengers`);
+    }, waitTime * 1000);
+
+    console.log(`Will start boarding in ${waitTime}`);
+}
+
+// Remember closure has priority of the scope chain.
+const perGroup = 1000;
+boardPassengers(210, 3)
+
