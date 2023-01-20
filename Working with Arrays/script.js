@@ -102,3 +102,9 @@ const arr2 = ['j', 'i', 'h', 'g', 'f']
 
 console.log(arr2.reverse()); // reverses the array. This method MUTATES the original array.
 console.log(arr2);
+
+// CONCAT METHOD - Does not mutate the original array
+const letters = arr.concat(arr2);
+// Alternatively
+console.log([...arr, ...arr2]);
+console.log(letters);
