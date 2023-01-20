@@ -95,3 +95,10 @@ console.log(arr.slice()); // ['a', 'b', 'c', 'd', 'e']
 console.log(arr.splice(-1));
 arr.splice(1, 2, 'z') 
 console.log(arr); // The original array has been changed. [a, z, d]
+
+// REVERSE METHOD
+arr = ['a', 'b', 'c', 'd', 'e']
+const arr2 = ['j', 'i', 'h', 'g', 'f']
+
+console.log(arr2.reverse()); // reverses the array. This method MUTATES the original array.
+console.log(arr2);
