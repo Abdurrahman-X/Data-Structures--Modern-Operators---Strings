@@ -74,3 +74,17 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // ------------------------------------- WORKING WITH ARRAYS -------------------------------------
+// Methods are simply functions that we can call on objects. therefore arrays are objects too.
+
+// SLICE METHOD
+
+let arr = ['a', 'b', 'c', 'd', 'e']
+console.log(arr.slice(2)); // Slice returns a new array. It does not mutate the original array.
+console.log(arr.slice(2,4)); // ['c', 'd']
+console.log(arr.slice(-1)); // ['e'] - Last element of an array
+console.log(arr.slice(1, -2)); // [b, c]
+// We can also use the slice method to create a shallow copy of any array.
+console.log(arr.slice()); // ['a', 'b', 'c', 'd', 'e']
+
+// SPLICE METHOD
+// The splice method is similar to the slice method. The fundamental difference however, is that splice mutates the original array.
