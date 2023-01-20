@@ -80,6 +80,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 let arr = ['a', 'b', 'c', 'd', 'e']
 console.log(arr.slice(2)); // Slice returns a new array. It does not mutate the original array.
+console.log(arr);
 console.log(arr.slice(2,4)); // ['c', 'd']
 console.log(arr.slice(-1)); // ['e'] - Last element of an array
 console.log(arr.slice(1, -2)); // [b, c]
@@ -87,4 +88,10 @@ console.log(arr.slice(1, -2)); // [b, c]
 console.log(arr.slice()); // ['a', 'b', 'c', 'd', 'e']
 
 // SPLICE METHOD
-// The splice method is similar to the slice method. The fundamental difference however, is that splice mutates the original array.
+// The splice method is similar to the slice method. The fundamental difference however, is that splice mutates the original array. In addition, the second parameter in the splice method specifies the number of elements to be deleted.
+
+//console.log(arr.splice(2)); // ['c', 'd', 'e']
+// To remove last element of an array, we can use the splice method as shown below:
+console.log(arr.splice(-1));
+arr.splice(1, 2, 'z') 
+console.log(arr); // The original array has been changed. [a, z, d]
