@@ -111,3 +111,23 @@ console.log(letters);
 
 // JOIN METHOD
 console.log(letters.join("-"));
+
+// AT METHOD
+
+const myArr = [23, 16, 54, 72];
+
+console.log(myArr[1]); // 16
+console.log(myArr.at(1)); // 16
+
+// One particularity of the at method is when we need to get the last element or penultimate element of an array.
+
+// Before the at method
+console.log(myArr[myArr.length - 1]); // 72
+//console.log(myArr.splice(-1)[0]); // 72
+console.log(myArr.slice(-1)[0]); // 72
+
+// With the at method
+console.log(myArr.at(-1)); // 72
+
+// The AT method also works on strings
+console.log('Abdurrahman'.at(4)); // r
