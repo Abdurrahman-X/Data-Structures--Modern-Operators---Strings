@@ -71,13 +71,14 @@ const currencies = new Map([
   ['GBP', 'Pound sterling'],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // ------------------------------------- WORKING WITH ARRAYS -------------------------------------
 // Methods are simply functions that we can call on objects. therefore arrays are objects too.
 
 // SLICE METHOD
 
+/*
 let arr = ['a', 'b', 'c', 'd', 'e']
 console.log(arr.slice(2)); // Slice returns a new array. It does not mutate the original array.
 console.log(arr);
@@ -131,3 +132,29 @@ console.log(myArr.at(-1)); // 72
 
 // The AT method also works on strings
 console.log('Abdurrahman'.at(4)); // r
+*/
+
+// --------------------------------- LOOPING ARRAYS: forEach Method -----------------------------
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+//console.log([...movements.entries()]);
+console.log("------FOR OF-----");
+
+for (const [i, movement] of movements.entries()) {
+  if (movement > 0) {
+    console.log(`Movement ${i + 1}: You deposited ${movement}`);
+  }
+  else {
+    console.log(`Movement ${i + 1}: You withdrew ${Math.abs(movement)}`);
+  }
+}
+
+console.log("-------- FOREACH -------");
+
+movements.forEach(function (mov, i, arr) {
+  if (mov > 0) {
+    console.log(`Movement ${i + 1}: You deposited ${mov}`);
+  }
+  else {
+    console.log(`Movement ${i + 1}: You withdrew ${Math.abs(mov)}`);
+  }
+})
