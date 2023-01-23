@@ -65,11 +65,11 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // LECTURES
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
 
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
@@ -135,6 +135,7 @@ console.log('Abdurrahman'.at(4)); // r
 */
 
 // --------------------------------- LOOPING ARRAYS: forEach Method -----------------------------
+/*
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 //console.log([...movements.entries()]);
 console.log("------FOR OF-----");
@@ -151,10 +152,36 @@ for (const [i, movement] of movements.entries()) {
 console.log("-------- FOREACH -------");
 
 movements.forEach(function (mov, i, arr) {
+  // mov - current element
+  // i - index
+  // arr - the array being looped over
+  console.log(mov, i, arr);
   if (mov > 0) {
     console.log(`Movement ${i + 1}: You deposited ${mov}`);
   }
   else {
     console.log(`Movement ${i + 1}: You withdrew ${Math.abs(mov)}`);
   }
+})
+*/
+
+// ------------------------------ forEach With Maps and Sets --------------------------------------
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
+
+// Maps
+currencies.forEach(function (value, key, map) {
+  console.log(`${key}: ${value}`);
+})
+
+// Sets
+const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+console.log(currenciesUnique);
+
+currenciesUnique.forEach(function (value, _value, set) {
+  // _value - unnecessary or throwaway variable in js
+  console.log(`${value}: ${value}`);
 })
