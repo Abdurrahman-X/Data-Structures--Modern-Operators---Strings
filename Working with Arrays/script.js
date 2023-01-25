@@ -205,3 +205,14 @@ currenciesUnique.forEach(function (value, _value, set) {
   console.log(`${value}: ${value}`);
 })
 
+
+
+// ---------------------------- DATA TRANSFORMATION: map, filter and reduce
+// MAPS
+// Map loops over an array and returns a new array containing the results of applying an operation on all original array elements.
+
+// FILTER
+// Filter returns a new array containing the array elements that passed a specified test condition.
+
+// REDUCE
+// Reduce boils ("reduces") all array elements down to one single value. (e.g adding all elements together)
