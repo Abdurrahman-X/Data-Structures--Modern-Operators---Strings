@@ -207,7 +207,7 @@ currenciesUnique.forEach(function (value, _value, set) {
 
 
 
-// ---------------------------- DATA TRANSFORMATION: map, filter and reduce
+// ---------------------------- DATA TRANSFORMATION: map, filter and reduce --------------------------
 // MAPS
 // Map loops over an array and returns a new array containing the results of applying an operation on all original array elements.
 
@@ -216,3 +216,22 @@ currenciesUnique.forEach(function (value, _value, set) {
 
 // REDUCE
 // Reduce boils ("reduces") all array elements down to one single value. (e.g adding all elements together)
+
+
+
+// ---------------------------------- THE MAP METHOD ---------------------------------------
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const eurtoUSD = 1.09;
+
+// const movementsUSD = movements.map(function (mov) {
+//   return Math.round(mov * eurtoUSD);
+// })
+
+const movementsUSD = movements.map(mov => Math.round(mov * eurtoUSD))
+const movementsDescription = movements.map(
+  (mov, i) => `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(mov)}`
+);
+
+console.log(movementsUSD);
+console.log(movementsDescription);
