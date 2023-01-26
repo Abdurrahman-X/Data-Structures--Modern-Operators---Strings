@@ -62,7 +62,7 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 
-// Creating DOM Elements
+// ---------------- CREATING DOM ELEMENTS --------------------------------
 const displayMovements = function (movements) {
   containerMovements.innerHTML = " ";
   movements.forEach(function (mov, i) {
@@ -79,7 +79,24 @@ const displayMovements = function (movements) {
   })
 }
 
-displayMovements(account1.movements)
+displayMovements(account1.movements);
+
+// ------------- COMPUTING USERNAMES ---------------------------------------
+
+const createUsernames = function (accs) {
+  accs.forEach(function(acc) {
+    acc.username = acc.owner
+    .toLowerCase()
+    .split(' ')
+    .map(name => name[0])
+    .join('');
+
+    console.log(acc);
+  })
+
+}
+
+createUsernames(accounts);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
