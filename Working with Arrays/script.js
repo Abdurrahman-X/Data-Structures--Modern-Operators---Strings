@@ -252,3 +252,27 @@ const movementsDescription = movements.map(
 
 console.log(movementsUSD);
 console.log(movementsDescription);
+
+// ------------------------------- THE FILTER METHOD ------------------------------------------
+// To filter only the deposits.
+const deposits = movements.filter(function(mov) {
+  return mov > 0;  
+});
+
+
+// Using Arrow function
+/*
+const depositArr = movements.filter(mov => mov > 0);
+
+// Using for-of loop
+const depositsFor = [];
+for (const mov of movements) {
+  if (mov > 0) {
+    depositsFor.push(mov);
+  }
+}
+*/
+
+// To filter only withdrawals
+const withdrawals = movements.filter(mov => mov < 0);
+console.log(movements, deposits, withdrawals);
