@@ -81,8 +81,11 @@ const displayMovements = function (movements) {
 
 displayMovements(account1.movements);
 
-// ------------- COMPUTING USERNAMES ---------------------------------------
 
+
+
+
+// ------------- COMPUTING USERNAMES ---------------------------------------
 const createUsernames = function (accs) {
   accs.forEach(function(acc) {
     acc.username = acc.owner
@@ -93,10 +96,12 @@ const createUsernames = function (accs) {
 
     console.log(acc);
   })
-
 }
 
 createUsernames(accounts);
+
+
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -276,3 +281,15 @@ for (const mov of movements) {
 // To filter only withdrawals
 const withdrawals = movements.filter(mov => mov < 0);
 console.log(movements, deposits, withdrawals);
+
+// --------------------------------- THE REDUCE METHOD -----------------------------------
+// The reduce method has 2 parameters - the callback function and the initial value of the accumulator
+
+const balance = movements.reduce(function (acc, curr, i, arr) {
+  console.log(`Iteration ${i + 1}: ${acc}`);
+  return acc + curr;
+}, 0)
+
+const balanceArrow = movements.reduce((acc, curr) => acc + curr, 0)
+
+console.log(balance, balanceArrow);
