@@ -82,12 +82,15 @@ const displayMovements = function (movements) {
 displayMovements(account1.movements);
 
 
-// ------------------- CALCULATE AND PRINT BALANCE
+// ------------------- CALCULATE AND PRINT BALANCE -------------------------------------
 const calcDisplayBalance = function (movements) {
   labelBalance.textContent = movements.reduce((acc, mov) => acc + mov, 0) + '€'
 }
 
 calcDisplayBalance(account1.movements);
+
+
+// -------------------- CALCULATE AND DISPLAY SUMMARY --------------------------
 
 
 
@@ -248,6 +251,8 @@ currenciesUnique.forEach(function (value, _value, set) {
 
 
 // ---------------------------------- THE MAP METHOD ---------------------------------------
+
+/*
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 const eurtoUSD = 1.09;
@@ -285,6 +290,7 @@ for (const mov of movements) {
 */
 
 // To filter only withdrawals
+/*
 const withdrawals = movements.filter(mov => mov < 0);
 console.log(movements, deposits, withdrawals);
 
@@ -315,3 +321,22 @@ const maxValue = movements.reduce(function(acc, mov) {
 // }, movements[0]);
 
 console.log(maxValue);
+*/
+
+// --------------------------- CHAINING METHODS ----------------------------------
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const eurtoUSD = 1.1;
+
+const totalDepositsUSD = movements
+  .filter(mov => mov > 0)
+  //.map(mov => mov * eurtoUSD)
+  // To keeep track of the array in case of an error
+  .map((mov, i, arr) => {
+    // console.log(arr);
+       return mov * eurtoUSD
+  })
+  .reduce((acc, mov) => acc + mov, 0)
+
+console.log(totalDepositsUSD);
+
