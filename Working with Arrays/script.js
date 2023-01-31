@@ -72,7 +72,7 @@ const displayMovements = function (movements) {
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
-        <div class="movements__value">${mov}</div>
+        <div class="movements__value">${mov}€</div>
       </div>`;
 
     containerMovements.insertAdjacentHTML("afterbegin", html)
@@ -91,7 +91,31 @@ calcDisplayBalance(account1.movements);
 
 
 // -------------------- CALCULATE AND DISPLAY SUMMARY --------------------------
+const calcDisplaySummary = function (movements) {
+  console.log(labelSumIn.textContent);
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}€`
 
+  const expenses = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(expenses)}€`
+
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(deposit => deposit * 1.2/100)
+    .filter((int, i, arr) => {
+      console.log(arr);
+      // filter out interests less than 1
+      return int >= 1
+    })
+    .reduce((acc, deposit) => acc + deposit, 0)
+  labelSumInterest.textContent = `${interest}€`
+}
+
+calcDisplaySummary(account1.movements)
 
 
 // ------------- COMPUTING USERNAMES ---------------------------------------
@@ -340,3 +364,6 @@ const totalDepositsUSD = movements
 
 console.log(totalDepositsUSD);
 
+// Optimize chaining, do not overuse.
+// It is bad practise to change methods that mutate the underlying original array
+// Do not chain methods like the splice and reverse
