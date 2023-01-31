@@ -83,7 +83,11 @@ displayMovements(account1.movements);
 
 
 // ------------------- CALCULATE AND PRINT BALANCE
- 
+const calcDisplayBalance = function (movements) {
+  labelBalance.textContent = movements.reduce((acc, mov) => acc + mov, 0) + '€'
+}
+
+calcDisplayBalance(account1.movements);
 
 
 
@@ -298,8 +302,16 @@ console.log(balance, balanceArrow);
 
 // Maximum value of movements array
 const maxValue = movements.reduce(function(acc, mov) {
-  const max = mov > acc ? mov : acc
-  return max;
-}, 0);
+  if (acc > mov) {
+    return acc;
+  } else {
+    return mov;
+  }
+ }, movements[0]);
+
+// const maxValue = movements.reduce(function(acc, mov) {
+//   const max = mov > acc ? mov : acc
+//   return max;
+// }, movements[0]);
 
 console.log(maxValue);
