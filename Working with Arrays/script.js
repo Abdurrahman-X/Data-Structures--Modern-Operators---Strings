@@ -82,6 +82,8 @@ const displayMovements = function (movements) {
 displayMovements(account1.movements);
 
 
+// ------------------- CALCULATE AND PRINT BALANCE
+ 
 
 
 
@@ -293,3 +295,11 @@ const balance = movements.reduce(function (acc, curr, i, arr) {
 const balanceArrow = movements.reduce((acc, curr) => acc + curr, 0)
 
 console.log(balance, balanceArrow);
+
+// Maximum value of movements array
+const maxValue = movements.reduce(function(acc, mov) {
+  const max = mov > acc ? mov : acc
+  return max;
+}, 0);
+
+console.log(maxValue);
