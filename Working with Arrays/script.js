@@ -92,7 +92,7 @@ calcDisplayBalance(account1.movements);
 
 // -------------------- CALCULATE AND DISPLAY SUMMARY --------------------------
 const calcDisplaySummary = function (movements) {
-  console.log(labelSumIn.textContent);
+  // console.log(labelSumIn.textContent);
   const incomes = movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
@@ -107,7 +107,7 @@ const calcDisplaySummary = function (movements) {
     .filter(mov => mov > 0)
     .map(deposit => deposit * 1.2/100)
     .filter((int, i, arr) => {
-      console.log(arr);
+      //console.log(arr);
       // filter out interests less than 1
       return int >= 1
     })
@@ -127,12 +127,26 @@ const createUsernames = function (accs) {
     .map(name => name[0])
     .join('');
 
-    console.log(acc);
+    //console.log(acc);
   })
 }
 
 createUsernames(accounts);
 
+
+// ------------------------- IMPLEMENTING LOGIN --------------------------------------
+
+let currentAccount;
+// Event Handler
+btnLogin.addEventListener('click', function (e) {
+  // By default, buttons in a form gets submitted on click. We can prevent that as shown below:
+  e.preventDefault(); 
+  // console.log('LOGIN');
+
+  currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value);
+  console.log(currentAccount);
+
+});
 
 
 /////////////////////////////////////////////////
@@ -240,6 +254,7 @@ movements.forEach(function (mov, i, arr) {
 */
 
 // ------------------------------ forEach With Maps and Sets --------------------------------------
+/*
 const currencies = new Map([
   ['USD', 'United States dollar'],
   ['EUR', 'Euro'],
@@ -259,6 +274,7 @@ currenciesUnique.forEach(function (value, _value, set) {
   // _value - unnecessary or throwaway variable in js
   console.log(`${value}: ${value}`);
 })
+*/
 
 
 
@@ -349,6 +365,7 @@ console.log(maxValue);
 
 // --------------------------- CHAINING METHODS ----------------------------------
 
+/*
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 const eurtoUSD = 1.1;
 
@@ -367,12 +384,16 @@ console.log(totalDepositsUSD);
 // Optimize chaining, do not overuse.
 // It is bad practise to chain methods that mutate the underlying original array
 // Do not chain methods like the splice and reverse
+*/
+
 
 // --------------------------- THE FIND METHOD ----------------------------------
 // The find method is used to retrieve an element from an array based on a condition. The find method does not return a new array like the filter method. Rather, it returns only the first element in the array that satisfies the given condition.
 
+/*
 const firstWithdrawal = movements.find(mov => mov < 0);
 console.log(movements, firstWithdrawal);
 
 const account = accounts.find(acc => acc.owner === "Jessica Davis");
 console.log(account);
+*/
