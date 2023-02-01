@@ -365,7 +365,7 @@ const totalDepositsUSD = movements
 console.log(totalDepositsUSD);
 
 // Optimize chaining, do not overuse.
-// It is bad practise to change methods that mutate the underlying original array
+// It is bad practise to chain methods that mutate the underlying original array
 // Do not chain methods like the splice and reverse
 
 // --------------------------- THE FIND METHOD ----------------------------------
