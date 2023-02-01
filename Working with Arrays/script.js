@@ -367,3 +367,12 @@ console.log(totalDepositsUSD);
 // Optimize chaining, do not overuse.
 // It is bad practise to change methods that mutate the underlying original array
 // Do not chain methods like the splice and reverse
+
+// --------------------------- THE FIND METHOD ----------------------------------
+// The find method is used to retrieve an element from an array based on a condition. The find method does not return a new array like the filter method. Rather, it returns only the first element in the array that satisfies the given condition.
+
+const firstWithdrawal = movements.find(mov => mov < 0);
+console.log(movements, firstWithdrawal);
+
+const account = accounts.find(acc => acc.owner === "Jessica Davis");
+console.log(account);
