@@ -90,27 +90,29 @@ const calcDisplayBalance = function (movements) {
 
 
 // -------------------- CALCULATE AND DISPLAY SUMMARY --------------------------
-const calcDisplaySummary = function (movements) {
+const calcDisplaySummary = function (account) {
   // console.log(labelSumIn.textContent);
-  const incomes = movements
+  const incomes = account.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${incomes}€`
 
-  const expenses = movements
+  const expenses = account.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumOut.textContent = `${Math.abs(expenses)}€`
 
-  const interest = movements
+  const interest = account.movements
     .filter(mov => mov > 0)
-    .map(deposit => deposit * 1.2/100)
+    .map(deposit => (deposit * account.interestRate) / 100)
     .filter((int, i, arr) => {
-      //console.log(arr);
+      console.log(arr);
       // filter out interests less than 1
       return int >= 1
     })
     .reduce((acc, deposit) => acc + deposit, 0)
+
+  //const interest = account.interestRate.
   labelSumInterest.textContent = `${interest}€`
 }
 
@@ -155,6 +157,7 @@ btnLogin.addEventListener('click', function (e) {
 
     // blur focus on input field
     inputLoginPin.blur()
+
     // Display Movements
     displayMovements(currentAccount.movements);
 
@@ -162,7 +165,10 @@ btnLogin.addEventListener('click', function (e) {
     calcDisplayBalance(currentAccount.movements)
 
     // Display Summary
-    calcDisplaySummary(currentAccount.movements)
+    calcDisplaySummary(currentAccount)
+  } else {
+    labelWelcome.textContent = 'Wrong Pin or Username!'
+    containerApp.style.opacity = 0;
   }
 
 });
