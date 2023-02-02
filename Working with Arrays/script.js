@@ -79,7 +79,6 @@ const displayMovements = function (movements) {
   })
 }
 
-displayMovements(account1.movements);
 
 
 // ------------------- CALCULATE AND PRINT BALANCE -------------------------------------
@@ -87,7 +86,7 @@ const calcDisplayBalance = function (movements) {
   labelBalance.textContent = movements.reduce((acc, mov) => acc + mov, 0) + '€'
 }
 
-calcDisplayBalance(account1.movements);
+
 
 
 // -------------------- CALCULATE AND DISPLAY SUMMARY --------------------------
@@ -115,7 +114,6 @@ const calcDisplaySummary = function (movements) {
   labelSumInterest.textContent = `${interest}€`
 }
 
-calcDisplaySummary(account1.movements)
 
 
 // ------------- COMPUTING USERNAMES ---------------------------------------
@@ -144,7 +142,24 @@ btnLogin.addEventListener('click', function (e) {
   // console.log('LOGIN');
 
   currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value);
-  console.log(currentAccount);
+  // console.log(currentAccount);
+
+  
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    // Display UI and welcome message
+    labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(' ')[0]}!`
+    containerApp.style.opacity = 100;
+   
+
+    // Display Movements
+    displayMovements(currentAccount.movements);
+
+    // Display Balance
+    calcDisplayBalance(currentAccount.movements)
+
+    // Display Summary
+    calcDisplaySummary(currentAccount.movements)
+  }
 
 });
 
