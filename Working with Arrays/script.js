@@ -82,12 +82,13 @@ const displayMovements = function (movements) {
 
 
 // ------------------- CALCULATE AND PRINT BALANCE -------------------------------------
-const calcDisplayBalance = function (movements) {
-  labelBalance.textContent = movements.reduce((acc, mov) => acc + mov, 0) + '€'
+const calcDisplayBalance = function (account) {
+  const balance = account.movements.reduce((acc, mov) => acc + mov, 0)
+  labelBalance.textContent = `${balance}€`
+
+  account.balance = balance;
+  console.log(account);
 }
-
-
-
 
 // -------------------- CALCULATE AND DISPLAY SUMMARY --------------------------
 const calcDisplaySummary = function (account) {
@@ -106,7 +107,7 @@ const calcDisplaySummary = function (account) {
     .filter(mov => mov > 0)
     .map(deposit => (deposit * account.interestRate) / 100)
     .filter((int, i, arr) => {
-      console.log(arr);
+      //console.log(arr);
       // filter out interests less than 1
       return int >= 1
     })
@@ -130,8 +131,19 @@ const createUsernames = function (accs) {
     //console.log(acc);
   })
 }
-
 createUsernames(accounts);
+
+// Update UI
+const updateUI = function (currentAccount) {
+  // Display Movements
+  displayMovements(currentAccount.movements);
+
+  // Display Balance
+  calcDisplayBalance(currentAccount)
+
+  // Display Summary
+  calcDisplaySummary(currentAccount)
+}
 
 
 // ------------------------- IMPLEMENTING LOGIN --------------------------------------
@@ -158,21 +170,52 @@ btnLogin.addEventListener('click', function (e) {
     // blur focus on input field
     inputLoginPin.blur()
 
-    // Display Movements
-    displayMovements(currentAccount.movements);
+    // Update UI
+    updateUI(currentAccount)
 
-    // Display Balance
-    calcDisplayBalance(currentAccount.movements)
-
-    // Display Summary
-    calcDisplaySummary(currentAccount)
   } else {
     labelWelcome.textContent = 'Wrong Pin or Username!'
     containerApp.style.opacity = 0;
   }
 
+  console.log(currentAccount);
 });
 
+
+// ------------------ IMPLEMENTING TRANSFERS -----------------------------------
+
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault();
+  
+  const amount = Number(inputTransferAmount.value);
+  const receiverAccount = accounts.find(acc => acc.username === inputTransferTo.value);
+
+  // check if the amount to be transferred is not negative, is bigger than the balance and the current user is not transferring to himself
+  if (
+    amount > 0 && 
+    receiverAccount && 
+    currentAccount.balance >= amount && 
+    (receiverAccount?.username !== currentAccount.username)
+    ) {
+    // console.log(receiverAccount.movements);
+
+    // transfer
+    receiverAccount.movements.push(amount);
+    currentAccount.movements.push(-amount);
+
+    console.log(currentAccount, receiverAccount);
+
+    // Update UI
+    updateUI(currentAccount);
+  }
+
+  //Clear input fields
+  inputTransferAmount.value = inputTransferTo.value = "";
+
+  // blur focus on input field
+  inputTransferTo.blur()
+
+})
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
