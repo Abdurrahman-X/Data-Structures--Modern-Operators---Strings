@@ -178,7 +178,7 @@ btnLogin.addEventListener('click', function (e) {
     containerApp.style.opacity = 0;
   }
 
-  console.log(currentAccount);
+  
 });
 
 
@@ -209,12 +209,48 @@ btnTransfer.addEventListener('click', function (e) {
     updateUI(currentAccount);
   }
 
-  //Clear input fields
+  // Clear input fields
   inputTransferAmount.value = inputTransferTo.value = "";
 
-  // blur focus on input field
+  // Blur focus on input field
   inputTransferTo.blur()
 
+})
+
+// -------------------------------- CLOSING THE ACCOUNT ----------------------------------------
+
+// The FindIndex() Method
+
+/* The findIndex() method returns the index of the first element in an array that satisfies the provided testing function. If no elements satisfy the testing function, -1 is returned. */
+
+btnClose.addEventListener('click', function(e) {
+  e.preventDefault();
+
+  
+
+  
+  // check if correct credentials
+  if (inputCloseUsername.value === currentAccount.username && Number(inputClosePin.value) === currentAccount.pin) {
+    
+    console.log('valid close');
+    const deleteIndex = accounts.findIndex(acc => acc.username === currentAccount.username);
+
+    console.log(deleteIndex);
+
+    accounts.splice(deleteIndex, 1);
+    console.log(accounts);
+
+    labelWelcome.textContent = "Log in to get started"
+    // Hide UI
+    containerApp.style.opacity = 0;
+  }
+
+  // Clear input fields
+  inputCloseUsername.value = inputClosePin.value = "";
+
+  // Blur focus on input field
+  inputClosePin.blur();
+  
 })
 
 /////////////////////////////////////////////////
@@ -465,3 +501,5 @@ console.log(movements, firstWithdrawal);
 const account = accounts.find(acc => acc.owner === "Jessica Davis");
 console.log(account);
 */
+
+
