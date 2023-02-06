@@ -217,6 +217,31 @@ btnTransfer.addEventListener('click', function (e) {
 
 })
 
+// ------------------------ REQUESTING FOR LOAN ------------------------------------------
+btnLoan.addEventListener('click', function(e) {
+  e.preventDefault();
+
+  const loanAmount = Number(inputLoanAmount.value);
+  const depGreLoan = currentAccount.movements
+    .filter(mov => mov > 0)
+    .some(mov => mov >= 0.1 * loanAmount);
+  
+    console.log(loanAmount, depGreLoan);
+
+  if (loanAmount > 0 && depGreLoan) {
+    currentAccount.movements.push(loanAmount);
+  }
+
+  updateUI(currentAccount);
+
+  // Clear input fields
+  inputLoanAmount.value = "";
+
+  // Blur focus on input field
+  inputLoanAmount.blur();
+
+})
+
 // -------------------------------- CLOSING THE ACCOUNT ----------------------------------------
 
 // The FindIndex() Method
@@ -502,4 +527,13 @@ const account = accounts.find(acc => acc.owner === "Jessica Davis");
 console.log(account);
 */
 
+// ----------------------- SOME & EVERY METHOD ---------------------------------
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// Includes checks for EQUALITY
+console.log(movements.includes(-130));
+
+// CONDITION
+const anyDeposits = movements.some(mov => mov > 0)
+console.log(anyDeposits); // true
 
