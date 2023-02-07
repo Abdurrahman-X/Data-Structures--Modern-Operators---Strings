@@ -213,8 +213,7 @@ btnTransfer.addEventListener('click', function (e) {
   inputTransferAmount.value = inputTransferTo.value = "";
 
   // Blur focus on input field
-  inputTransferTo.blur()
-
+  inputTransferTo.blur();
 })
 
 // ------------------------ REQUESTING FOR LOAN ------------------------------------------
@@ -239,7 +238,6 @@ btnLoan.addEventListener('click', function(e) {
 
   // Blur focus on input field
   inputLoanAmount.blur();
-
 })
 
 // -------------------------------- CLOSING THE ACCOUNT ----------------------------------------
@@ -250,8 +248,6 @@ btnLoan.addEventListener('click', function(e) {
 
 btnClose.addEventListener('click', function(e) {
   e.preventDefault();
-
-  
 
   
   // check if correct credentials
@@ -530,10 +526,31 @@ console.log(account);
 // ----------------------- SOME & EVERY METHOD ---------------------------------
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
+/*
+
 // Includes checks for EQUALITY
 console.log(movements.includes(-130));
 
-// CONDITION
+// SOME: CONDITION
 const anyDeposits = movements.some(mov => mov > 0)
 console.log(anyDeposits); // true
+
+
+// EVERY: CONDITION
+// Returns true iff all the elements in the array satisfy the condition that's passed in
+
+// console.log(movements.every(mov => mov > 0));
+// console.log(account4.movements.every(mov => mov > 0));
+const everyDeposits = movements.filter(mov => mov > 0).every(mov => mov > 50)
+console.log(everyDeposits);
+
+*/
+
+// SEPARATING CALLBACKS
+const deposit = mov => mov > 0;
+
+console.log(movements.some(deposit));
+console.log(movements.every(deposit));
+console.log(movements.filter(deposit));
+
 
