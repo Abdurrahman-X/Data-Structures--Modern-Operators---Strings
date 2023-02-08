@@ -554,3 +554,26 @@ console.log(movements.every(deposit));
 console.log(movements.filter(deposit));
 
 
+
+// ----------------------- FLAT & FLATMAP METHODS -------------------------------------------
+
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr.flat()); // [1, 2, 3, 4, 5, 6, 7, 8]
+
+// The flat method only goes one level deep when flattening an array
+
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+console.log(arrDeep.flat(2));  // 2 - refers to the depth of the flattening.
+
+// To calculate the overall balance of all movements in all accounts.
+
+// flat
+const totalMovementsBalance = accounts
+  .map(account => account.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+
+console.log(totalMovementsBalance);
+
+
+
