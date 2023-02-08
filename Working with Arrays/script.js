@@ -576,4 +576,9 @@ const totalMovementsBalance = accounts
 console.log(totalMovementsBalance);
 
 
+// flatMap
+const totalMovementsBalance2 = accounts
+  .flatMap(account => account.movements) // flatMap only goes one level deep, and cannot be changed.
+  .reduce((acc, mov) => acc + mov, 0);
 
+console.log(totalMovementsBalance2);
