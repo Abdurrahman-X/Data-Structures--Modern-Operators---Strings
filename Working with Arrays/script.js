@@ -601,20 +601,25 @@ console.log(movements);
 // return > 0, sort b before a
 
 // Ascending order
-movements.sort((a, b) => {
-  // a - current value
-  // b - next value
-  if (a > b) return 1;
-  if (a < b) return -1;
-});
+// movements.sort((a, b) => {
+//   // a - current value
+//   // b - next value
+//   if (a > b) return 1;
+//   if (a < b) return -1;
+// });
+
+movements.sort((a, b) => a - b);
 
 console.log(movements);
 
 // Descending order
-movements.sort((a, b) => {
-  if (a > b) return -1;
-  if (a < b) return 1;
-});
+// movements.sort((a, b) => {
+//   if (a > b) return -1;
+//   if (a < b) return 1;
+// });
+
+movements.sort((a, b) => b - a)
 
 console.log(movements);
 
+// NOTE: The sort method cannot be used with mixed arrays.
