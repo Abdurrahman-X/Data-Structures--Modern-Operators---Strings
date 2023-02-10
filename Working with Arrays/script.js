@@ -582,3 +582,39 @@ const totalMovementsBalance2 = accounts
   .reduce((acc, mov) => acc + mov, 0);
 
 console.log(totalMovementsBalance2);
+
+
+// -------------------------- SORT METHOD --------------------------------------
+
+// Sort mutates the Original Array.
+// Strings
+
+const owners = ['Zach', 'Adam', 'Mario', 'Yigit'];
+console.log(owners.sort()); // Sorts the owners array in alphabetical order.
+console.log(owners); // Sort mutates the original array.
+
+// Numbers
+console.log(movements);
+//console.log(movements.sort()); // converts the number to strings and then sort alphabetically. Not correct. Should not be used directly on numbers.
+
+// return < 0, sort a before b
+// return > 0, sort b before a
+
+// Ascending order
+movements.sort((a, b) => {
+  // a - current value
+  // b - next value
+  if (a > b) return 1;
+  if (a < b) return -1;
+});
+
+console.log(movements);
+
+// Descending order
+movements.sort((a, b) => {
+  if (a > b) return -1;
+  if (a < b) return 1;
+});
+
+console.log(movements);
+
