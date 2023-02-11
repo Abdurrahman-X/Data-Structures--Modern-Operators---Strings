@@ -63,9 +63,12 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 
 // ---------------- CREATING DOM ELEMENTS --------------------------------
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = " ";
-  movements.forEach(function (mov, i) {
+
+  // creating a shallow copy of the array.
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     //console.log(type);
     
@@ -78,7 +81,6 @@ const displayMovements = function (movements) {
     containerMovements.insertAdjacentHTML("afterbegin", html)
   })
 }
-
 
 
 // ------------------- CALCULATE AND PRINT BALANCE -------------------------------------
@@ -176,6 +178,11 @@ btnLogin.addEventListener('click', function (e) {
   } else {
     labelWelcome.textContent = 'Wrong Pin or Username!'
     containerApp.style.opacity = 0;
+    // Clear input fields
+    inputLoginUsername.value = inputLoginPin.value = "";
+
+    // blur focus on input field
+    inputLoginPin.blur()
   }
 
   
@@ -272,6 +279,18 @@ btnClose.addEventListener('click', function(e) {
   // Blur focus on input field
   inputClosePin.blur();
   
+})
+
+// --------------- SORTING THE MOVEMENTS -------------------------------
+
+let sorted = false;
+btnSort.addEventListener('click', function(e) {
+  e.preventDefault();
+
+  console.log(currentAccount.movements);
+
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
 })
 
 /////////////////////////////////////////////////
@@ -589,6 +608,7 @@ console.log(totalMovementsBalance2);
 // Sort mutates the Original Array.
 // Strings
 
+/*
 const owners = ['Zach', 'Adam', 'Mario', 'Yigit'];
 console.log(owners.sort()); // Sorts the owners array in alphabetical order.
 console.log(owners); // Sort mutates the original array.
@@ -623,3 +643,4 @@ movements.sort((a, b) => b - a)
 console.log(movements);
 
 // NOTE: The sort method cannot be used with mixed arrays.
+*/
