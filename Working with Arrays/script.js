@@ -644,3 +644,44 @@ console.log(movements);
 
 // NOTE: The sort method cannot be used with mixed arrays.
 */
+
+
+// ----------------------- CREATING & FILLING ARRAYS ----------------------------------------
+const barr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+console.log(new Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
+
+// Empty arrays x fill method
+const x = new Array(7).fill(1) // creates an empty array with 7 elements - [empty x 7]
+console.log(x);
+
+// x.fill(1); // [1, 1, 1, 1, 1, 1, 1]. Mutates the original array.
+//x.fill(1, 3) // specify the begin parameter which is position 3. [empty × 3, 1, 1, 1, 1]
+//x.fill(1, 3, 5) // specify the end parameter just like the splice(). [empty × 3, 1, 1, empty × 2]
+console.log(x);
+
+console.log(barr.fill(23, 4, 6));
+
+// Array.from
+
+const y = Array.from({length: 7}, () => 1);
+console.log(y); // [1, 1, 1, 1, 1, 1, 1].
+
+const z = Array.from({length: 7}, (_, i) => i + 1)
+console.log(z); // [1, 2, 3, 4, 5, 6, 7]
+
+const randomRoll = Array.from({length: 100}, () => Math.floor(Math.random() * 6) + 1);
+console.log(randomRoll);
+
+// Iterables in JS such as strings, maps, sets can be converted to arrays using Array.from(). We can also convert a NodeList from querySelectorAll() to an array using Array.from().
+
+labelBalance.addEventListener('click', function(e) {
+  e.preventDefault();
+
+  const movementsUI = Array.from(document.querySelectorAll('.movements__value'), mov => Number(mov.innerText.replace('€', '')))
+  
+  console.log(movementsUI);
+
+  const movementsUI2 = [...document.querySelectorAll('.movements__value')].map(mov => Number(mov.innerText.replace('€', '')));
+  
+  console.log(movementsUI2);
+})
