@@ -41,4 +41,10 @@ const bankDepositSum = accounts
     
 console.log(bankDepositSum);
 
-// 2.
+// 2. How many deposits with at least $1,000
+const numDeposits1000 = accounts
+    .flatMap(account => account.movements)
+    .filter(mov =>  mov >= 1000)
+    .length;
+
+console.log(numDeposits1000);
