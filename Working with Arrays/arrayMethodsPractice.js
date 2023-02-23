@@ -62,8 +62,34 @@ console.log(numDeposits1000);
 const {deposit, withdrawal} = accounts
     .flatMap(account => account.movements)
     .reduce((acc, mov) => {
-        mov > 0 ? acc.deposit += mov : acc.withdrawal += mov;
+        // mov > 0 ? acc.deposit += mov : acc.withdrawal += mov;
+        acc[mov > 0 ? 'deposit' : 'withdrawal'] += mov;
         return acc;
     }, {deposit: 0, withdrawal: 0})
 
 console.log(deposit, withdrawal);
+
+
+// 4. Function to convert any string to titlecase
+
+const toTitleCase = function (string) {
+    const capitalize = str => str[0].toUpperCase() + str.slice(1).toLowerCase();
+    const titleCase = string
+        .split(' ')
+        .map(function (word, i, arrz) {
+           return word.length <= 2 ? word : capitalize(word);
+        })
+        //.map(word => word[0].toUpperCase() + word.slice(1).toLowerCase())
+        .join(' ');
+
+    console.log(titleCase);
+}
+
+// const convertTitleCase = function (title) {
+    
+// }
+
+toTitleCase('today is a GOoD dAY');
+toTitleCase('this is a nice title o');
+toTitleCase('this is a LONG title but not too long');
+toTitleCase('and here is another EXAMPLE');
