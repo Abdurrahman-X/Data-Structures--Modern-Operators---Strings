@@ -54,3 +54,14 @@ const numDeposits1000 = accounts
     .reduce((acc, mov) => mov >= 1000 ? ++acc : acc, 0);
 
 console.log(numDeposits1000);
+
+// 3. Create an object which contains the sum of the deposits and of the withdrawals using the reduce method
+
+const sums = accounts
+    .flatMap(account => account.movements)
+    .reduce((acc, mov) => {
+        mov > 0 ? acc.deposit += mov : acc.withdrawal += mov;
+        return acc;
+    }, {deposit: 0, withdrawal: 0})
+
+console.log(sums);
