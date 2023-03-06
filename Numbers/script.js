@@ -428,3 +428,14 @@ labelBalance.addEventListener('click', function (e) {
     if (i % 2 === 0) row.style.backgroundColor = 'orange';
   })
 })
+
+// ------------------------- NUMERIC SEPARATORS -------------------------------------
+// 287460000000
+const diameter = 287_460_000_000;
+console.log(diameter); // 28760000000
+
+const price = 345_99
+console.log(price); //34599
+
+console.log(Number('230000')); // 230_000
+console.log(Number('230_000')); // NaN - should not be used with strings.
