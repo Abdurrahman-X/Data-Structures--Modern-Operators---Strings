@@ -406,3 +406,25 @@ console.log((2.7).toFixed(3)); // '2.700'
 console.log((2.7345).toFixed(2)); // '2.73'
 // Convert to Number
 console.log(+(2.7345).toFixed(3)); // 2.735
+
+
+// --------------------------- THE REMAINDER OPERATOR -------------------------------------
+// Used to check if a number is even or odd.
+console.log(8 % 3); // 2
+
+// const isEven = function (n) {
+//   return n % 2 === 0;
+// }
+
+const isEven = n => n % 2 === 0
+console.log(isEven(8)); // True
+console.log(isEven(23)); // False
+console.log(isEven(17)); // False
+console.log(isEven(10)); // True
+
+labelBalance.addEventListener('click', function (e) {
+  e.preventDefault();
+  [...document.querySelectorAll('.movements__row')].forEach(function (row, i) {
+    if (i % 2 === 0) row.style.backgroundColor = 'orange';
+  })
+})
