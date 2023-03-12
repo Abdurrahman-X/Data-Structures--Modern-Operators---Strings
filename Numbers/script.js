@@ -401,6 +401,7 @@ console.log(Math.floor(-23.9)); // -24
 
 // ROUNDING FLOATING POINT NUMBERS (DECIMALS)
 // The toFixed() method formats a number using fixed-point notation. It returns a STRING, not a NUMBER
+/*
 console.log((2.7).toFixed(0)); // '3'
 console.log((2.7).toFixed(3)); // '2.700'
 console.log((2.7345).toFixed(2)); // '2.73'
@@ -439,3 +440,38 @@ console.log(price); //34599
 
 console.log(Number('230000')); // 230_000
 console.log(Number('230_000')); // NaN - should not be used with strings.
+*/
+
+// -------------------- BIGINT -----------------------------------------
+// Numbers in JS are represented internally as 64 bits, meaning there are exactly 64 1's or 0's to represent any given number. Out of these 64 bits, only 53 bits are used to store the numbers themselves. The remaining bits are used to store the position of the decimal point and and the sign.
+
+console.log((2 ** 53) - 1); // 9007199254740991
+console.log(Number.MAX_SAFE_INTEGER); // 9007199254740991
+
+// Any number greater than 9007199254740991 cannot be accurately represented by JS. And This is where BigInt comes in.
+console.log(452318976243461866292185315272290n);
+console.log(BigInt(45231897624346)); // Use for small numbers
+
+// Operations
+console.log(100000000n + 152773763789973583973664n);
+console.log(635472637868277387832638463873n * 56357647254783627476n);
+
+const huge = 8928873526789029876536781900987654323456890n  ;
+const num = 20;
+
+// console.log(huge + num); // Error!. Cannot mix BigInt with other types
+console.log(huge + BigInt(num)); // Correct
+
+// Exceptions
+console.log(20n > 15); // true
+console.log(20n === 20); // false because they have different primitive type.
+console.log(20n == 20); // true - because of type coercion
+
+console.log(typeof(20)); // number
+console.log(typeof(20n)) // bigint
+
+console.log(huge + ' is a really big value');
+
+// Divisions
+console.log(10 / 3); // 3.33333333
+console.log(13n / 3n); // 3n - returns the nearest bigint
