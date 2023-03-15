@@ -445,6 +445,7 @@ console.log(Number('230_000')); // NaN - should not be used with strings.
 // -------------------- BIGINT -----------------------------------------
 // Numbers in JS are represented internally as 64 bits, meaning there are exactly 64 1's or 0's to represent any given number. Out of these 64 bits, only 53 bits are used to store the numbers themselves. The remaining bits are used to store the position of the decimal point and and the sign.
 
+/*
 console.log((2 ** 53) - 1); // 9007199254740991
 console.log(Number.MAX_SAFE_INTEGER); // 9007199254740991
 
@@ -475,3 +476,56 @@ console.log(huge + ' is a really big value');
 // Divisions
 console.log(10 / 3); // 3.33333333
 console.log(13n / 3n); // 3n - returns the nearest bigint
+*/
+
+
+// CREATING DATES
+
+// Create a date
+/*
+const now = new Date();
+console.log(now);
+
+console.log(new Date('Mar 13 2023 09:51:48'));
+console.log(new Date('May 13, 2003'));
+console.log(new Date (account1.movementsDates[0]));
+
+// We can also pass in year, month, date, hour, minute, and seconds. For months, Javascript is zero-based, hence 0 is January etc..
+console.log(new Date(2027, 10, 23, 14, 35, 9)); // Tue Nov 23 2027 14:35:09 GMT+0100 (West Africa Standard Time)
+console.log(new Date(2027, 10, 31, 14, 35, 9)); // Wed Dec 01 2027 14:35:09 GMT+0100 (West Africa Standard Time)
+
+// Beginning of Unix time - January 1, 1970. We can also pass milliseconds into the new Date function to show how long after the Unix time
+
+// To calculate 3 days after the Unix time
+console.log(new Date(3 * 24 * 3600 * 1000)); // Sun Jan 04 1970 01:00:00 GMT+0100 (West Africa Standard Time)
+*/
+
+// Dates are a special type of objects, hence they have their own methods.
+const futureDate = new Date(2027, 10, 23, 14, 35);
+console.log(futureDate);
+console.log(futureDate.getFullYear()); // 2027
+console.log(futureDate.getMonth()); // 10 - remember this is zero based. So 10 is Novemeber
+console.log(futureDate.getDate()); // 23
+console.log(futureDate.getDay()); // 2 (Tuesday)- this is the day of the week. This is zero-based too.
+console.log(futureDate.getHours()); // 14
+console.log(futureDate.getMinutes()); // 35
+console.log(futureDate.getSeconds()); // 0
+console.log(futureDate.getMilliseconds());
+
+console.log(futureDate.toDateString()); // Tue Nov 23 2027
+console.log(futureDate.toISOString()); // 2027-11-23T13:35:00.000Z
+console.log(futureDate.getTime()); // 1826976900000 - the timestamp is the no of milliseconds after the UNIX time
+
+console.log(new Date(1826976900000)); // Tue Nov 23 2027 14:35:00 GMT+0100 (West Africa Standard Time)
+
+
+// To get the current timestamp
+console.log(Date.now()); // 1678917408912
+
+futureDate.setFullYear(2040);
+console.log(futureDate); // Fri Nov 23 2040 14:35:00 GMT+0100 (West Africa Standard Time)
+
+
+
+
+
