@@ -75,18 +75,31 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 
 // ---------------- CREATING DOM ELEMENTS --------------------------------
-const displayMovements = function (movements, sort = false) {
+const displayMovements = function (account, sort = false) {
   containerMovements.innerHTML = " ";
 
   // creating a shallow copy of the array.
-  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements
+  const movs = sort ? account.movements.slice().sort((a, b) => a - b) : account.movements
+  
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
-    //console.log(type);
+    
+    const date = new Date(account.movementsDates[i]);
+    const day = `${date.getDate()}`.padStart(2, 0);
+    const month = `${date.getMonth() + 1}`.padStart(2, 0);
+    const year = date.getFullYear();
+    const hour = `${date.getHours()}`.padStart(2, 0);
+    const mins = `${date.getMinutes()}`.padStart(2, 0);
+
+
+const displayDate =`${day}/${month}/${year}`;
+    
+   
     
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
+        <div class="movements__date">${displayDate}</div>
         <div class="movements__value">${mov.toFixed(2)}€</div>
       </div>`;
 
@@ -150,7 +163,7 @@ createUsernames(accounts);
 // Update UI
 const updateUI = function (currentAccount) {
   // Display Movements
-  displayMovements(currentAccount.movements);
+  displayMovements(currentAccount);
 
   // Display Balance
   calcDisplayBalance(currentAccount)
@@ -163,6 +176,7 @@ const updateUI = function (currentAccount) {
 // ------------------------- IMPLEMENTING LOGIN --------------------------------------
 
 let currentAccount;
+
 // Event Handler
 btnLogin.addEventListener('click', function (e) {
   // By default, buttons in a form gets submitted on click. We can prevent that as shown below:
@@ -177,6 +191,18 @@ btnLogin.addEventListener('click', function (e) {
     // Display UI and welcome message
     labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(' ')[0]}!`
     containerApp.style.opacity = 100;
+
+    // Creating new dates
+    const currentDate = new Date();
+    
+    // day/month/year
+    const day = `${currentDate.getDate()}`.padStart(2, 0);
+    const month = `${currentDate.getMonth() + 1}`.padStart(2, 0);
+    const year = currentDate.getFullYear();
+    const hour = `${currentDate.getHours()}`.padStart(2, 0);
+    const mins = `${currentDate.getMinutes()}`.padStart(2, 0);
+
+    labelDate.textContent =`${day}/${month}/${year}, ${hour}:${mins}`;
    
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = "";
@@ -222,6 +248,10 @@ btnTransfer.addEventListener('click', function (e) {
     receiverAccount.movements.push(amount);
     currentAccount.movements.push(-amount);
 
+    // Adding transfer date
+    currentAccount.movementsDates.push(new Date().toISOString());
+    receiverAccount.movementsDates.push(new Date().toISOString());
+
     console.log(currentAccount, receiverAccount);
 
     // Update UI
@@ -250,6 +280,9 @@ btnLoan.addEventListener('click', function(e) {
 
   if (loanAmount > 0 && depGreLoan) {
     currentAccount.movements.push(loanAmount);
+
+    // Adding Loan Date
+    currentAccount.movementsDates.push(new Date().toISOString())
   }
 
   updateUI(currentAccount);
@@ -303,7 +336,7 @@ btnSort.addEventListener('click', function(e) {
 
   console.log(currentAccount.movements);
 
-  displayMovements(currentAccount.movements, !sorted);
+  displayMovements(currentAccount, !sorted);
   sorted = !sorted;
 })
 
