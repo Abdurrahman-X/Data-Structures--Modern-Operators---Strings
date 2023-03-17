@@ -512,7 +512,7 @@ console.log(13n / 3n); // 3n - returns the nearest bigint
 */
 
 
-// CREATING DATES
+// --------------------------------- CREATING DATES ---------------------------------------------
 
 // Create a date
 /*
@@ -531,7 +531,7 @@ console.log(new Date(2027, 10, 31, 14, 35, 9)); // Wed Dec 01 2027 14:35:09 GMT+
 
 // To calculate 3 days after the Unix time
 console.log(new Date(3 * 24 * 3600 * 1000)); // Sun Jan 04 1970 01:00:00 GMT+0100 (West Africa Standard Time)
-*/
+
 
 // Dates are a special type of objects, hence they have their own methods.
 const futureDate = new Date(2027, 10, 23, 14, 35);
@@ -557,8 +557,27 @@ console.log(Date.now()); // 1678917408912
 
 futureDate.setFullYear(2040);
 console.log(futureDate); // Fri Nov 23 2040 14:35:00 GMT+0100 (West Africa Standard Time)
+*/
 
+// ---------------------- OPERATIONS ON DATES -----------------------------------------
 
+const futureDate = new Date(2027, 10, 23, 14, 35);
+console.log(Number(futureDate)); // 1826976900000 - timestamp in milliseconds
+console.log(+futureDate); // 1826976900000
+
+// We can subtract days from each other to calculate how many days has passed between them.
+
+// Normal function
+const calcDaysPassed1 = function (date1, date2) {
+  return (date2 - date1) / (1000 * 60 * 60 * 24);
+}
+const daysPassed1 = calcDaysPassed1(new Date(2022, 11, 20), new Date(2023, 2, 15));
+console.log(daysPassed1); // 85.
+
+// Arrow function
+const calcDaysPassed2 = (date1, date2) => Math.abs(date2 - date1) / (1000 * 3600 * 24)
+const daysPassed2 = calcDaysPassed2(new Date(2023, 2, 15), new Date(2022, 11, 20));
+console.log(daysPassed2); // 85
 
 
 
