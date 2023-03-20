@@ -605,4 +605,29 @@ const daysPassed2 = calcDaysPassed2(new Date(2023, 2, 15), new Date(2022, 11, 20
 console.log(daysPassed2); // 85
 
 
+// ------------------ TIMERS: SETTIMEOUT & SETINTERVAL --------------------------------------
+
+// setTimeOut - runs just once after a defined time
+// setInterval - keeeps running until we stop it.
+
+/*
+setTimeout((ingr1, ingr2) => {
+  console.log(`Here is your pizza 🍕 with ${ingr1} and ${ingr2}`);
+}, 3000, 'olives', 'spinach'); // Here is your pizza with olives and spinach.
+console.log('waiting.......');
+*/
+
+// You can also clear the timer or cancel the timer so that the function doesn't execute anymore
+const ingredients = ['onions', 'salt', 'crayfish', 'pepper']
+const spaghTimer = setTimeout((ing1, ing2, ing3, ing4) => {
+  console.log(`Here is your spaghetti 🍝 with ${ing1}, ${ing2}, ${ing3} and ${ing4}`);
+}, 3000, ...ingredients);
+
+console.log("Waiting...");
+// To clear timer
+if (ingredients.includes('crayfish')) {
+  clearTimeout(spaghTimer);
+}
+
+
 
