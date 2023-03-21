@@ -304,13 +304,21 @@ btnLoan.addEventListener('click', function(e) {
     // console.log(loanAmount, depGreLoan);
 
   if (loanAmount > 0 && depGreLoan) {
-    currentAccount.movements.push(loanAmount);
+    setTimeout(() => {
+      currentAccount.movements.push(loanAmount);
 
     // Adding Loan Date
     currentAccount.movementsDates.push(new Date().toISOString())
+
+    updateUI(currentAccount);
+    }, 10000);
+    // currentAccount.movements.push(loanAmount);
+
+    // // Adding Loan Date
+    // currentAccount.movementsDates.push(new Date().toISOString())
+    
   }
 
-  updateUI(currentAccount);
 
   // Clear input fields
   inputLoanAmount.value = "";
